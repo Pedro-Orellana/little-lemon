@@ -148,6 +148,7 @@ fun HeroSection() {
         horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
         modifier = Modifier
             .fillMaxWidth()
+            .size(width = 0.dp, height = 380.dp)
             .background(
                 Color(0xFF495E57)
             )
@@ -178,7 +179,7 @@ fun HeroSection() {
         Row(
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().size(width = 0.dp, height = 180.dp)
         ) {
             Text(
                 text = "We are a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist",
@@ -193,11 +194,12 @@ fun HeroSection() {
             Image(
                 painter = painterResource(id = R.drawable.hero),
                 contentDescription = "Hero image",
-                contentScale = ContentScale.Fit,
+                contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .padding(end = 16.dp)
                     .weight(2f)
-                    //.size(width = 300.dp, height = 50.dp)
+                    .fillMaxWidth()
+                    .size(width = 0.dp, height = 200.dp)
                     .clip(RoundedCornerShape(16.dp))
             )
         }
@@ -209,7 +211,7 @@ fun HeroSection() {
             shape = CircleShape,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 20.dp),
+                .padding(horizontal = 16.dp, vertical = 18.dp),
             placeholder = { Text(text = "Enter search phrase")}
         )
     }
