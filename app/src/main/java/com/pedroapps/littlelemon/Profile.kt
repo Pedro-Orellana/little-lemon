@@ -1,6 +1,5 @@
 package com.pedroapps.littlelemon
 
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,10 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.pedroapps.littlelemon.ui.theme.karlaFontFamily
@@ -65,17 +62,16 @@ fun Body(firstName: String, lastName: String, email: String) {
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 20.dp, start = 12.dp)
         )
-        TextInput(isEnabled = false, value = firstName, onValueChange = {}, label = "First name", isFirst = true)
+        TextInput(
+            isEnabled = false,
+            value = firstName,
+            onValueChange = {},
+            label = "First name",
+            isFirst = true
+        )
         TextInput(isEnabled = false, value = lastName, onValueChange = {}, label = "Last Name")
         TextInput(isEnabled = false, value = email, onValueChange = {}, label = "Email")
 
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun ProfilePreview() {
-//    val context = LocalContext.current
-//    val preferences = context.getSharedPreferences("Little Lemon", Context.MODE_PRIVATE)
-    //Profile(preferences = preferences,)
-}

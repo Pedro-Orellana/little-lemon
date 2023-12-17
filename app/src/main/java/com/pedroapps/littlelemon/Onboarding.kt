@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -72,12 +70,11 @@ fun Onboarding(navController: NavHostController, preferences: SharedPreferences)
             setEmail = { email = it })
 
 
-        BottomButton(buttonText= "Register", onClickHandler = onClickHandler)
+        BottomButton(buttonText = "Register", onClickHandler = onClickHandler)
 
 
     }
 }
-
 
 
 @Composable
@@ -102,16 +99,22 @@ fun InformationForm(
             textAlign = TextAlign.Center
         )
 
-        TextInput(isEnabled = true, value = firstName, onValueChange = setFirstName, label = "First name", isFirst = true )
-        TextInput(isEnabled = true, value = lastName, onValueChange = setLastName, label = "Last name")
+        TextInput(
+            isEnabled = true,
+            value = firstName,
+            onValueChange = setFirstName,
+            label = "First name",
+            isFirst = true
+        )
+        TextInput(
+            isEnabled = true,
+            value = lastName,
+            onValueChange = setLastName,
+            label = "Last name"
+        )
         TextInput(isEnabled = true, value = email, onValueChange = setEmail, label = "Email")
 
     }
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun OnboardingPreview() {
-    //Onboarding()
-}
