@@ -1,5 +1,6 @@
 package com.pedroapps.littlelemon
 
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,8 +21,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,6 +38,7 @@ import com.pedroapps.littlelemon.ui.theme.karlaFontFamily
 @Composable
 fun Home(navController: NavHostController) {
     val context = LocalContext.current
+    val localFocusManager = LocalFocusManager.current
     val database = MenuDatabase.getDatabase(context = context)
     val menuItems = database.menuDao().getAllMenuItems().observeAsState()
 
@@ -60,6 +64,11 @@ fun Home(navController: NavHostController) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
+            .pointerInput(Unit) {
+                detectTapGestures (onTap = {
+                    localFocusManager.clearFocus()
+                })
+            }
     ) {
         HomeHeader {
             navController.navigate("Profile")

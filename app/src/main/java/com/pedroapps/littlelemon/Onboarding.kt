@@ -2,6 +2,7 @@ package com.pedroapps.littlelemon
 
 import android.content.SharedPreferences
 import android.widget.Toast
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +16,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -28,6 +31,7 @@ import com.pedroapps.littlelemon.ui.theme.karlaFontFamily
 fun Onboarding(navController: NavHostController, preferences: SharedPreferences) {
 
     val context = LocalContext.current
+    val localFocusManager = LocalFocusManager.current
 
     var firstName by remember {
         mutableStateOf("")
@@ -55,7 +59,12 @@ fun Onboarding(navController: NavHostController, preferences: SharedPreferences)
     }
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .pointerInput(Unit) {
+                detectTapGestures (onTap = {
+                    localFocusManager.clearFocus()
+                })
+            },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
@@ -96,7 +105,7 @@ fun InformationForm(
             fontSize = 20.sp,
             modifier = Modifier.padding(start = 12.dp),
             fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
 
         TextInput(
@@ -104,7 +113,8 @@ fun InformationForm(
             value = firstName,
             onValueChange = setFirstName,
             label = "First name",
-            isFirst = true
+            isFirst = true,
+
         )
         TextInput(
             isEnabled = true,

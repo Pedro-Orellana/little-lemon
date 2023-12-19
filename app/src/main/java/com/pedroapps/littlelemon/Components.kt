@@ -143,7 +143,8 @@ fun TextInput(
             .padding(padding),
         label = ({ Text(text = label) }),
         shape = CircleShape,
-        enabled = isEnabled
+        enabled = isEnabled,
+        singleLine = true
     )
 
 }
@@ -224,7 +225,8 @@ fun HeroSection(searchPhrase: String, setSearchPhrase: (String) -> Unit) {
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 18.dp),
             placeholder = { Text(text = "Enter search phrase") },
-            leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "") }
+            leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "") },
+            singleLine = true
         )
     }
 }
