@@ -19,7 +19,7 @@ interface MenuDao {
     fun insertMenu(menuItems: List<MenuItemRoom>)
 
     @Query("SELECT * FROM menu_item")
-    fun getAllMenuItems() : LiveData<List<MenuItemRoom>>
+    fun getAllMenuItems(): LiveData<List<MenuItemRoom>>
 
 }
 
@@ -48,7 +48,11 @@ abstract class MenuDatabase : RoomDatabase() {
         fun getDatabase(context: Context): MenuDatabase {
 
             return Instance ?: synchronized(this) {
-                val instance = Room.databaseBuilder(context.applicationContext,MenuDatabase::class.java,"menu_database")
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    MenuDatabase::class.java,
+                    "menu_database"
+                )
                     .fallbackToDestructiveMigration()
                     .build()
                 Instance = instance

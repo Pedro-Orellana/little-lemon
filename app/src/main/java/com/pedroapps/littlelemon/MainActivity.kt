@@ -39,7 +39,10 @@ class MainActivity : ComponentActivity() {
             fetchMenuFromNetwork()
         }
 
+
+
         setContent {
+
             val navController = rememberNavController()
 
             LittleLemonTheme(darkTheme = false) {
@@ -59,10 +62,9 @@ class MainActivity : ComponentActivity() {
         val response: MenuNetwork =
             httpClient.get("https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json")
                 .body()
-        println(response)
 
         val menuItems = response.menu.map {
-            MenuItemRoom(it.id, it.title,it.description, it.price, it.image, it.category)
+            MenuItemRoom(it.id, it.title, it.description, it.price, it.image, it.category)
         }
 
         val database = MenuDatabase.getDatabase(this)

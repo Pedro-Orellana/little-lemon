@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 
-data class MenuNetwork (@SerialName("menu") val menu : List<MenuItemNetwork>)
+data class MenuNetwork(@SerialName("menu") val menu: List<MenuItemNetwork>)
 
 @Serializable
 data class MenuItemNetwork(
